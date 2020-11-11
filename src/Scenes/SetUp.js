@@ -87,6 +87,10 @@ export default class SetUp extends Phaser.Scene {
   }
 
   updateDarkMode() {
-    this.darkModeBtn.setTexture('checkBox');
+    if (this.darkMode) {
+      this.darkModeBtn.setTexture('checkBox');
+    } else {
+      this.darkModeBtn.setTexture('whiteBox');
+    }
   }
 };
