@@ -13,7 +13,7 @@ class GamePlay extends Phaser.Game {
     super(config);
 
     const musicModel = new MusicModel();
-    this.globals = { musicModel, backgroundMusic: null };
+    this.globals = { musicModel, backgroundMusic: null, fullScreen: false, darkMode: false };
     this.scene.add('Boot', Boot);
     this.scene.add('Preload', Preload);
     this.scene.add('Begin', Begin);

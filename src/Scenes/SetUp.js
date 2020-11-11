@@ -9,15 +9,23 @@ export default class SetUp extends Phaser.Scene {
   create() {
     this.musicModel = this.sys.game.globals.musicModel;
 
-    this.settingsText = this.add.text(300, 100, 'Set Up', { fontSize: 40 });
-    this.musicBtn = this.add.image(200, 200, 'checkBox');
-    this.musicTxt = this.add.text(250, 190, 'Turn on Music', { fontSize: 24 });
+    this.settingsText = this.add.text(300, 50, 'Set Up', { fontSize: 40 });
+    this.musicBtn = this.add.image(200, 150, 'checkBox');
+    this.musicTxt = this.add.text(250, 140, 'Turn on Music', { fontSize: 24 });
 
-    this.soundBtn = this.add.image(200, 300, 'checkBox');
-    this.soundTxt = this.add.text(250, 290, 'Turn on Sound', { fontSize: 24 });
+    this.soundBtn = this.add.image(200, 250, 'checkBox');
+    this.soundTxt = this.add.text(250, 240, 'Turn on Sound', { fontSize: 24 });
+
+    this.screenSizeBtn = this.add.image(200, 350, 'whiteBox');
+    this.screenSizeTxt = this.add.text(250, 340, 'Enter full screen mode', { fontSize: 24 });
+
+    this.darkModeBtn = this.add.image(200, 450, 'whiteBox');
+    this.darkModeTxt = this.add.text(250, 440, 'Turn on dark mode', { fontSize: 24 });
 
     this.musicBtn.setInteractive();
     this.soundBtn.setInteractive();
+    this.screenSizeBtn.setInteractive();
+    this.darkModeBtn.setInteractive();
 
     this.musicBtn.on('pointerdown', function() {
       this.musicModel.turnMusicOn = !this.musicModel.musicPlaying;
@@ -29,8 +37,17 @@ export default class SetUp extends Phaser.Scene {
       this.updateAudioPlayer();
     }.bind(this));
 
+    this.screenSizeBtn.on('pointerdown', function() {
+      this.fullScreen = !this.fullScreen;
+      this.updateScreenSizeBtn();
+    }.bind(this));
 
-    this.menuBtn = new Button(this, 400, 500, 'firstBtn', 'secondBtn', 'Main Menu', 'Begin');
+    this.darkModeBtn.on('pointerdown', function() {
+      this.darkMode = !this.darkMode;
+      this.updateDarkModeBtn();
+    }.bind(this));
+
+    this.menuBtn = new Button(this, 400, 550, 'firstBtn', 'secondBtn', 'Main Menu', 'Begin');
 
     this.updateAudioPlayer();
   }
@@ -53,5 +70,14 @@ export default class SetUp extends Phaser.Scene {
     } else {
       this.soundBtn.setTexture('checkBox');
     }
+  }
+
+  updateScreenSizeBtn() {
+    this.screenSizeBtn.setTexture('checkBox');
+  }
+
+  updateDarkModeBtn() {
+    this.darkModeBtn.setTexture('checkBox');
+
   }
 };
