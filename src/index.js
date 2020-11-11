@@ -11,6 +11,7 @@ import MusicModel from './MusicModel';
 class GamePlay extends Phaser.Game {
   constructor() {
     super(config);
+
     const musicModel = new MusicModel();
     this.globals = { musicModel, backgroundMusic: null };
     this.scene.add('Boot', Boot);
@@ -21,7 +22,6 @@ class GamePlay extends Phaser.Game {
     this.scene.add('Game', Game);
     this.scene.start('Boot');
   }
-
 }
 
 window.game = new GamePlay();
