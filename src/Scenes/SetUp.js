@@ -1,4 +1,6 @@
 import 'phaser';
+import config from '../Config/config';
+
 import Button from '../Objects/Button';
 
 export default class SetUp extends Phaser.Scene {
@@ -8,6 +10,7 @@ export default class SetUp extends Phaser.Scene {
 
   create() {
     this.musicModel = this.sys.game.globals.musicModel;
+    this.darkMode = this.sys.game.globals.darkMode;
 
     this.settingsText = this.add.text(300, 50, 'Set Up', { fontSize: 40 });
     this.musicBtn = this.add.image(200, 150, 'checkBox');
@@ -39,12 +42,13 @@ export default class SetUp extends Phaser.Scene {
 
     this.screenSizeBtn.on('pointerdown', function() {
       this.fullScreen = !this.fullScreen;
-      this.updateScreenSizeBtn();
+      this.updateScreenSize();
     }.bind(this));
 
     this.darkModeBtn.on('pointerdown', function() {
+      this.sys.game.globals.darkMode = !this.sys.game.globals.darkMode;
       this.darkMode = !this.darkMode;
-      this.updateDarkModeBtn();
+      this.updateDarkMode();
     }.bind(this));
 
     this.menuBtn = new Button(this, 400, 550, 'firstBtn', 'secondBtn', 'Main Menu', 'Begin');
@@ -72,12 +76,17 @@ export default class SetUp extends Phaser.Scene {
     }
   }
 
-  updateScreenSizeBtn() {
-    this.screenSizeBtn.setTexture('checkBox');
+  updateScreenSize() {
+    if (this.fullScreen) {
+      this.screenSizeBtn.setTexture('checkBox');
+      config.callbacks.postBoot(this.game, this.fullScreen);
+    } else {
+      this.screenSizeBtn.setTexture('whiteBox');
+      config.callbacks.postBoot(this.game);
+    }
   }
 
-  updateDarkModeBtn() {
+  updateDarkMode() {
     this.darkModeBtn.setTexture('checkBox');
-
   }
 };

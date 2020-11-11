@@ -8,6 +8,8 @@ export default class Game extends Phaser.Scene {
     this.gameOver = false;
 
     this.score = 0;
+
+    this.beginCount = 0;
   }
 
   preload() {
@@ -25,7 +27,10 @@ export default class Game extends Phaser.Scene {
   create() {
     // this.add.image(400, 300, 'logo');
     //  A simple background for our game
-    this.add.image(450, 300, 'sky');
+    this.darkMode = this.sys.game.globals.darkMode;
+    if (this.darkMode === false) {
+      this.add.image(450, 300, 'sky');
+    }
 
     //  The platforms group contains the ground and the 2 ledges we can jump on
     this.platforms = this.physics.add.staticGroup();
@@ -170,5 +175,12 @@ export default class Game extends Phaser.Scene {
     this.player.anims.play('turn');
 
     this.gameOver = true;
+    this.begin();
+  }
+
+  begin() {
+    setTimeout(() => {
+      this.scene.start('Begin');
+    }, 3000);
   }
 };

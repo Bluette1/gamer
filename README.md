@@ -26,7 +26,7 @@ This project is a capstone project at the end of the Microverse Javascript curri
     - the score is increased each time the player collects gem(s).
     - be disabled on collision with a grenade shell.
     - User can toggle between dark and light mode.
-    - User can view the game in full screen and minimize it
+    - User can view the game in full screen mode and minimize screen
 
 ## Deployed Site
 [Gamer on heroku]()
@@ -46,7 +46,7 @@ This project is a capstone project at the end of the Microverse Javascript curri
 - Run `yarn dev` to run this app in development environment or `yarn start` to run this project in production environment
 
 ### Tests
-- No test yet
+- yarn test
 
 ## Contributions
 
