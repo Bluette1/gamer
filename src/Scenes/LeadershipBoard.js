@@ -32,7 +32,6 @@ export default class LeadershipBoard extends Phaser.Scene {
     this.begin();
   }
 
-
   begin() {
     setTimeout(() => {
       this.scene.start('Title');
