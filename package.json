@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "watch": "webpack --env development --watch",
-    "build": "webpack -p --env production",
+    "build": "webpack --env production",
     "dev": "webpack-dev-server --env development --watch --open",
     "debug": "webpack-dev-server  --open",
     "start": "webpack-dev-server --env production --open",
