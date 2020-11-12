@@ -10,6 +10,8 @@ export default class Game extends Phaser.Scene {
 
     this.score = 0;
 
+    this.scoreTextColor = '#FFFFFF';
+
     this.beginCount = 0;
     this.url = this.sys.game.globals.url;
     const postGameUrl = `${this.url}/games/`;
@@ -33,6 +35,7 @@ export default class Game extends Phaser.Scene {
     //  A simple background for our game
     this.darkMode = this.sys.game.globals.darkMode;
     if (this.darkMode === false) {
+      this.scoreTextColor = '#000000';
       this.add.image(450, 300, 'sky');
     }
 
@@ -94,7 +97,7 @@ export default class Game extends Phaser.Scene {
     this.shells = this.physics.add.group();
 
     //  The score
-    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '33px', fill: '#000000' });
+    this.scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '33px', fill: this.scoreTextColor });
 
     //  Collide the player, and the flowers with the platforms
     this.physics.add.collider(this.player, this.platforms);
@@ -155,8 +158,8 @@ export default class Game extends Phaser.Scene {
         child.enableBody(true, child.x, 0, true, true);
       });
 
-      const shellDistx = (this.player.x < 400)
-        ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+      const shellDistx = (this.player.x < 400) ?
+        Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
       this.shell = this.shells.create(shellDistx, 16, 'shell');
       this.shell.setBounce(1);

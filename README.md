@@ -46,7 +46,7 @@ This project is a capstone project at the end of the Microverse Javascript curri
 - Run `yarn dev` to run this app in development environment or `yarn start` to run this project in production environment
 
 ### Tests
-- yarn test
+- Run `yarn test`
 
 ## Contributions
 
