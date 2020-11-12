@@ -29,7 +29,7 @@ This project is a capstone project at the end of the Microverse Javascript curri
 - A user can view the game in full screen mode and minimize screen.
 
 ## Deployed Site
-[Gamer on heroku]()
+[Gamer on heroku](https://super-gamer-app.herokuapp.com/)
 
 ## Running and testing it locally
 
