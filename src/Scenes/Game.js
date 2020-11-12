@@ -10,6 +10,12 @@ export default class Game extends Phaser.Scene {
     this.score = 0;
 
     this.beginCount = 0;
+    this.url = this.sys.game.globals.url;
+    const postGameUrl = `${this.url}/games/`;
+    const postGameParams = {
+      "name": "gamer"
+    };
+    this.postRequest(postGameParams, postGameUrl, this.updateGameId);
   }
 
   preload() {
@@ -25,7 +31,6 @@ export default class Game extends Phaser.Scene {
 
 
   create() {
-    // this.add.image(400, 300, 'logo');
     //  A simple background for our game
     this.darkMode = this.sys.game.globals.darkMode;
     if (this.darkMode === false) {
@@ -38,15 +43,12 @@ export default class Game extends Phaser.Scene {
     //  Here we create the ground.
     //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
     this.platforms.create(400, 568, 'ground').setScale(3).refreshBody();
-    // this.platforms.create(450, 595, 'ground').setScale(3).refreshBody();
 
-    //  Now let's create some ledges
+    //  Now let's create some ledges as platforms
     this.platforms.create(600, 400, 'ground');
     this.platforms.create(50, 250, 'ground');
     this.platforms.create(750, 220, 'ground');
-    // this.platforms.create(830, 430, 'ground');
-    // this.platforms.create(150, 250, 'ground');
-    // this.platforms.create(850, 220, 'ground');
+
 
     // The player and its settings
     this.player = this.physics.add.sprite(100, 450, 'girl');
@@ -176,6 +178,32 @@ export default class Game extends Phaser.Scene {
 
     this.gameOver = true;
     this.begin();
+  }
+
+  async postRequest(postParams, url, callback) {
+
+
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify(postParams)
+    }
+    try {
+      const response = await fetch(url, requestOptions);
+      const resp = await response.json();
+      callback(resp);
+    } catch (error) {
+
+    }
+
+
+  }
+
+  updateGameId(id) {
+    this.gameId = id;
   }
 
   begin() {

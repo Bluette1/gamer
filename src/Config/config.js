@@ -7,7 +7,7 @@ export default {
   width: 800,
   mode: Phaser.Scale.FIT,
   autoCenter: Phaser.Scale.CENTER_BOTH,
-  height: 650,
+  height: 750,
   physics: {
     default: 'arcade',
     arcade: {
@@ -23,7 +23,7 @@ export default {
         game.canvas.style.height = '100%';
       } else {
         game.canvas.style.width = '800px';
-        game.canvas.style.height = '650px';
+        game.canvas.style.height = '750px';
       }
 
     }
