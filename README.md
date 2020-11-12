@@ -20,13 +20,13 @@ This project is a capstone project at the end of the Microverse Javascript curri
 
 ## Features
 - This has a landing page, where users can access the app's features
-- Player can 
-    - move left, right and jump upwards in order to collect gems(flowers in this case)
-    - double jump
-    - the score is increased each time the player collects gem(s).
-    - be disabled on collision with a grenade shell.
-    - User can toggle between dark and light mode.
-    - User can view the game in full screen mode and minimize screen
+- The player can 
+    - move left, right and jump upwards in order to collect gems(flowers in this case).
+    - double jump.
+    - is disabled on collision with a grenade shell.
+- The score is increased each time the player collects gem(s).
+- A user can toggle between dark and light mode.
+- A user can view the game in full screen mode and minimize screen.
 
 ## Deployed Site
 [Gamer on heroku]()
