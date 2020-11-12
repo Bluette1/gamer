@@ -28,5 +28,14 @@ export default class LeadershipBoard extends Phaser.Scene {
     );
 
     this.text.setY(200);
+
+    this.begin();
+  }
+
+
+  begin() {
+    setTimeout(() => {
+      this.scene.start('Title');
+    }, 3000);
   }
 }

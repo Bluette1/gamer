@@ -59,7 +59,9 @@ export default class SetUp extends Phaser.Scene {
   updateAudioPlayer() {
     if (this.musicModel.musicPlaying === false) {
       this.musicBtn.setTexture('whiteBox');
-      this.sys.game.globals.backgroundMusic.stop();
+      if (this.sys.game.globals.backgroundMusic !== null) {
+        this.sys.game.globals.backgroundMusic.stop();
+      }
       this.musicModel.backgroundMusic = false;
     } else {
       this.musicBtn.setTexture('checkBox');
