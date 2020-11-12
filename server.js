@@ -11,7 +11,7 @@ app.get('/', (request, response) => {
 });
 
 app.listen(PORT, error => (
-  error ?
-  console.error(error) :
-  console.info(`Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`)
+  error
+    ? console.error(error)
+    : console.info(`Listening on port ${PORT}. Visit http://localhost:${PORT}/ in your browser.`)
 ));
