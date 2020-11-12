@@ -1,4 +1,4 @@
-import 'phaser';
+import Phaser from 'phaser';
 
 export default class Preload extends Phaser.Scene {
   constructor() {
@@ -22,61 +22,61 @@ export default class Preload extends Phaser.Scene {
 
     const lengthX = this.cameras.main.width;
     const lengthY = this.cameras.main.height;
-    var loadingText = this.make.text({
+    const loadingText = this.make.text({
       x: lengthX / 2,
       y: lengthY / 2 - 50,
       text: 'Loading...',
       style: {
         font: '22px monospace',
-        fill: '#FFB6C1'
-      }
+        fill: '#FFB6C1',
+      },
     });
     loadingText.setOrigin(0.5, 0.5);
 
-    var percentageText = this.make.text({
+    const percentageText = this.make.text({
       x: lengthX / 2,
       y: lengthY / 2 - 5,
       text: '0%',
       style: {
         font: '20px monospace',
-        fill: '#FFB6C1'
-      }
+        fill: '#FFB6C1',
+      },
     });
     percentageText.setOrigin(0.5, 0.5);
 
-    var assetText = this.make.text({
+    const assetText = this.make.text({
       x: lengthX / 2,
       y: lengthY / 2 + 50,
       text: '',
       style: {
         font: '20px monospace',
-        fill: '#FFB6C1'
-      }
+        fill: '#FFB6C1',
+      },
     });
     assetText.setOrigin(0.5, 0.5);
 
     // update the progress bar
-    this.load.on('progress', function(value) {
-      percentageText.setText(parseInt(value * 100) + '%');
+    this.load.on('progress', (value) => {
+      percentageText.setText(`${parseInt(value * 100, 10)}%`);
       progressBar.clear();
       progressBar.fillStyle(0xFFB6C1, 1);
       progressBar.fillRect(250, 280, 300 * value, 30);
     });
 
     // update the file progress text
-    this.load.on('fileprogress', function(fileLoading) {
-      assetText.setText('Loading asset: ' + fileLoading.key);
+    this.load.on('fileprogress', (fileLoading) => {
+      assetText.setText(`Loading asset: ${fileLoading.key}`);
     });
 
     // remove the progress bar when complete
-    this.load.on('complete', function() {
+    this.load.on('complete', () => {
       progressBar.destroy();
       progressBox.destroy();
       loadingText.destroy();
       percentageText.destroy();
       assetText.destroy();
       this.begin();
-    }.bind(this));
+    });
 
     this.timedEvent = this.time.delayedCall(3000, this.begin, [], this);
 
@@ -91,9 +91,9 @@ export default class Preload extends Phaser.Scene {
 
   begin() {
     this.scene.start('Begin');
-    this.beginCount++;
+    this.beginCount += 1;
     if (this.beginCount === 2) {
       this.scene.start('Begin');
     }
   }
-};
+}

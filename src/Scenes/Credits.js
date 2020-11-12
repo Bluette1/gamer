@@ -1,4 +1,4 @@
-import 'phaser';
+import Phaser from 'phaser';
 import config from '../Config/config';
 
 export default class Credits extends Phaser.Scene {
@@ -9,28 +9,33 @@ export default class Credits extends Phaser.Scene {
   create() {
     this.text = this.add.text(0, 0, 'Credits', { fontSize: '33px', fill: '#FFB6C1' });
     this.creatorText = this.add.text(0, 0, 'Created By: Gamer', { fontSize: '28px', fill: '#FFB6C1' });
-    this.creditsZone = this.add.zone(config.width / 2, config.height / 2, config.width, config.height);
+    this.creditsZone = this.add.zone(
+      config.width / 2,
+      config.height / 2,
+      config.width,
+      config.height,
+    );
     this.creatorWebAddress = this.add.text(0, 0, 'Visit https://portfolio-ms-app.herokuapp.com/', { fontSize: '28px', fill: '#FFB6C1' });
-    this.creatorEmail = this.add.text(0, 0, 'Email: marylene.swayer@gmail.com', { fontSize: '28px', fill: '#FFB6C1' });
+    this.creatorEmail = this.add.text(0, 0, 'Email: marylene.sawyer@gmail.com', { fontSize: '28px', fill: '#FFB6C1' });
 
     Phaser.Display.Align.In.Center(
       this.text,
-      this.creditsZone
+      this.creditsZone,
     );
 
     Phaser.Display.Align.In.Center(
       this.creatorText,
-      this.creditsZone
+      this.creditsZone,
     );
 
     Phaser.Display.Align.In.Center(
       this.creatorWebAddress,
-      this.creditsZone
+      this.creditsZone,
     );
 
     Phaser.Display.Align.In.Center(
       this.creatorEmail,
-      this.creditsZone
+      this.creditsZone,
     );
 
     this.creatorText.setY(990);
@@ -45,9 +50,9 @@ export default class Credits extends Phaser.Scene {
       ease: 'Power1',
       duration: 3000,
       delay: 1000,
-      onComplete: function() {
-        this.destroy;
-      }
+      onComplete() {
+        this.remove = this.destroy;
+      },
     });
 
     this.creatorWebAddressTween = this.tweens.add({
@@ -56,9 +61,9 @@ export default class Credits extends Phaser.Scene {
       ease: 'Power1',
       duration: 8000,
       delay: 1000,
-      onComplete: function() {
-        this.destroy;
-      }
+      onComplete() {
+        this.remove = this.destroy;
+      },
     });
 
     this.creatorEmailTween = this.tweens.add({
@@ -67,9 +72,9 @@ export default class Credits extends Phaser.Scene {
       ease: 'Power1',
       duration: 13000,
       delay: 1000,
-      onComplete: function() {
-        this.destroy;
-      }
+      onComplete() {
+        this.remove = this.destroy;
+      },
     });
 
     this.creatorTween = this.tweens.add({
@@ -78,10 +83,10 @@ export default class Credits extends Phaser.Scene {
       ease: 'Power1',
       duration: 18000,
       delay: 1000,
-      onComplete: function() {
-        this.creatorTween.destroy;
+      onComplete: function () {
+        this.remove = this.creatorTween.destroy;
         this.scene.start('Begin');
-      }.bind(this)
+      }.bind(this),
     });
   }
-};
+}

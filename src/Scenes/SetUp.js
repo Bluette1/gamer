@@ -1,4 +1,4 @@
-import 'phaser';
+import Phaser from 'phaser';
 import config from '../Config/config';
 
 import Button from '../Objects/Button';
@@ -30,26 +30,26 @@ export default class SetUp extends Phaser.Scene {
     this.screenSizeBtn.setInteractive();
     this.darkModeBtn.setInteractive();
 
-    this.musicBtn.on('pointerdown', function() {
+    this.musicBtn.on('pointerdown', () => {
       this.musicModel.turnMusicOn = !this.musicModel.musicPlaying;
       this.updateAudioPlayer();
-    }.bind(this));
+    });
 
-    this.soundBtn.on('pointerdown', function() {
+    this.soundBtn.on('pointerdown', () => {
       this.musicModel.turnSoundOn = !this.musicModel.soundPlaying;
       this.updateAudioPlayer();
-    }.bind(this));
+    });
 
-    this.screenSizeBtn.on('pointerdown', function() {
+    this.screenSizeBtn.on('pointerdown', () => {
       this.fullScreen = !this.fullScreen;
       this.updateScreenSize();
-    }.bind(this));
+    });
 
-    this.darkModeBtn.on('pointerdown', function() {
+    this.darkModeBtn.on('pointerdown', () => {
       this.sys.game.globals.darkMode = !this.sys.game.globals.darkMode;
       this.darkMode = !this.darkMode;
       this.updateDarkMode();
-    }.bind(this));
+    });
 
     this.menuBtn = new Button(this, 400, 550, 'firstBtn', 'secondBtn', 'Main Menu', 'Begin');
 
@@ -93,4 +93,4 @@ export default class SetUp extends Phaser.Scene {
       this.darkModeBtn.setTexture('whiteBox');
     }
   }
-};
+}

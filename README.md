@@ -8,7 +8,7 @@ This project is an implementation of a game application which runs in the browse
 This project is a capstone project at the end of the Microverse Javascript curriculum. The project's specifications are listed [here](https://www.notion.so/Platform-game-4a55a7d1fcc245bcb012c76814764712).
 
 ## Screenshot
-![demo picture](./src/assets/images/screenshot.png)
+![demo picture](./assets/screenshot.png)
 
 ## Built with
 - HTML5

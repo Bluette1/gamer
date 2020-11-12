@@ -1,9 +1,10 @@
-import 'phaser';
+import Phaser from 'phaser';
 
 export default class Game extends Phaser.Scene {
   constructor() {
     super('Game');
   }
+
   init() {
     this.gameOver = false;
 
@@ -13,7 +14,7 @@ export default class Game extends Phaser.Scene {
     this.url = this.sys.game.globals.url;
     const postGameUrl = `${this.url}/games/`;
     const postGameParams = {
-      "name": "gamer"
+      name: 'gamer',
     };
     this.postRequest(postGameParams, postGameUrl, this.updateGameId);
   }
@@ -26,9 +27,7 @@ export default class Game extends Phaser.Scene {
     this.load.image('flower', '../../assets/flower.png');
     this.load.image('shell', '../../assets/shell.png');
     this.load.spritesheet('girl', '../../assets/player.png', { frameWidth: 81, frameHeight: 99 });
-
   }
-
 
   create() {
     //  A simple background for our game
@@ -49,7 +48,6 @@ export default class Game extends Phaser.Scene {
     this.platforms.create(50, 250, 'ground');
     this.platforms.create(750, 220, 'ground');
 
-
     // The player and its settings
     this.player = this.physics.add.sprite(100, 450, 'girl');
 
@@ -62,20 +60,20 @@ export default class Game extends Phaser.Scene {
       key: 'left',
       frames: this.anims.generateFrameNumbers('girl', { start: 0, end: 3 }),
       frameRate: 10,
-      repeat: -1
+      repeat: -1,
     });
 
     this.anims.create({
       key: 'turn',
       frames: [{ key: 'girl', frame: 4 }],
-      frameRate: 20
+      frameRate: 20,
     });
 
     this.anims.create({
       key: 'right',
       frames: this.anims.generateFrameNumbers('girl', { start: 5, end: 8 }),
       frameRate: 10,
-      repeat: -1
+      repeat: -1,
     });
 
     //  Keyborad Input Events
@@ -85,14 +83,12 @@ export default class Game extends Phaser.Scene {
     this.flowers = this.physics.add.group({
       key: 'flower',
       repeat: 11,
-      setXY: { x: 12, y: 0, stepX: 70 }
+      setXY: { x: 12, y: 0, stepX: 70 },
     });
 
-    this.flowers.children.iterate(function(child) {
-
+    this.flowers.children.iterate((child) => {
       //  Give each star a slightly different bounce
       child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
-
     });
 
     this.shells = this.physics.add.group();
@@ -105,12 +101,17 @@ export default class Game extends Phaser.Scene {
     this.physics.add.collider(this.flowers, this.platforms);
     this.physics.add.collider(this.shells, this.platforms);
 
-    //  Check to see if the player overlaps with any of the flowers, if he does call the gatherFlower function
-    this.physics.add.overlap(this.player, this.flowers, this.gatherFlower, null, this);
+    //  Check to see if the player overlaps with any of the flowers,
+    //  if he does call the gatherFlower function
+    this.physics.add.overlap(
+      this.player, this.flowers,
+      this.gatherFlower,
+      null,
+      this,
+    );
 
     this.physics.add.collider(this.player, this.shells, this.hitShell, null, this);
   }
-
 
   update() {
     if (this.gameOver) {
@@ -132,14 +133,12 @@ export default class Game extends Phaser.Scene {
     }
 
     if (this.cursors.up.isDown) {
-
       if (this.player.body.touching.down) {
         this.player.setVelocityY(-330);
         this.canDoubleJump = true;
       } else if (this.canDoubleJump) {
         this.player.setVelocityY(-330);
       }
-
     }
   }
 
@@ -148,24 +147,22 @@ export default class Game extends Phaser.Scene {
 
     // Update the score
     this.score += 10;
-    this.scoreText.setText('Score: ' + this.score);
+    this.scoreText.setText(`Score: ${this.score}`);
 
     if (this.flowers.countActive(true) === 0) {
       //  A new batch of flowers to gather
-      this.flowers.children.iterate(function(child) {
-
+      this.flowers.children.iterate((child) => {
         child.enableBody(true, child.x, 0, true, true);
-
       });
 
-      let shellDistx = (this.player.x < 400) ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+      const shellDistx = (this.player.x < 400)
+        ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
       this.shell = this.shells.create(shellDistx, 16, 'shell');
       this.shell.setBounce(1);
       this.shell.setCollideWorldBounds(true);
       this.shell.setVelocity(Phaser.Math.Between(-200, 200), 20);
       this.shell.allowGravity = false;
-
     }
   }
 
@@ -181,25 +178,24 @@ export default class Game extends Phaser.Scene {
   }
 
   async postRequest(postParams, url, callback) {
-
-
     const requestOptions = {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       credentials: 'include',
-      body: JSON.stringify(postParams)
-    }
+      body: JSON.stringify(postParams),
+    };
     try {
       const response = await fetch(url, requestOptions);
       const resp = await response.json();
       callback(resp);
     } catch (error) {
-
+      console.log(
+        `Error encountered while making the request to the Api: ${this.url}`,
+        error,
+      );
     }
-
-
   }
 
   updateGameId(id) {
@@ -211,4 +207,4 @@ export default class Game extends Phaser.Scene {
       this.scene.start('Begin');
     }, 3000);
   }
-};
+}

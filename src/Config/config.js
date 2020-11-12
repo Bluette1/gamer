@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
 
-
 export default {
   type: Phaser.AUTO,
   parent: 'phaser-example',
@@ -12,11 +11,11 @@ export default {
     default: 'arcade',
     arcade: {
       gravity: { y: 300 },
-      debug: false
-    }
+      debug: false,
+    },
   },
   callbacks: {
-    postBoot: function(game, fullScreenMode = false) {
+    postBoot(game, fullScreenMode = false) {
       // In v3.15, you have to override Phaser's default styles
       if (fullScreenMode) {
         game.canvas.style.width = '100%';
@@ -25,7 +24,6 @@ export default {
         game.canvas.style.width = '800px';
         game.canvas.style.height = '750px';
       }
-
-    }
-  }
+    },
+  },
 };
