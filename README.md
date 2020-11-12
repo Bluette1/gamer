@@ -3,7 +3,7 @@
 ![Test with jest](https://github.com/bluette1/gamer/workflows/Test%20with%20jest/badge.svg)
 
 ## Project description
-This project is an implementation of a game application which runs in the browser, using Phaser3 technology. Being new to Phaser, and game development, I built and modified upon this example in the [Phaser tutorial](http://phaser.io/tutorials/making-your-first-phaser-3-game/part1), as I much as I could while learning on the project.
+This project is an implementation of a game application which runs in the browser, using Phaser3 technology. Being new to Phaser, and game development, I built and modified upon the examples in the [Phaser tutorial](http://phaser.io/tutorials/making-your-first-phaser-3-game/part1), as well as in the [Phaser Template Series](https://phasertutorials.com/creating-a-phaser-3-template-part-3/), as much as I could while learning on the project.
 
 This project is a capstone project at the end of the Microverse Javascript curriculum. The project's specifications are listed [here](https://www.notion.so/Platform-game-4a55a7d1fcc245bcb012c76814764712).
 
