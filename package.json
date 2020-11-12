@@ -4,9 +4,9 @@
   "description": "This project is an implementation of a game application which runs in the browser, using Phaser3 technology.",
   "main": "src/index.js",
   "scripts": {
-    "watch": "webpack --mode=development --watch",
+    "watch": "webpack --env development --watch",
     "build": "webpack -p --env production",
-    "dev": "webpack-dev-server --mode=development --env development --watch --open",
+    "dev": "webpack-dev-server --env development --watch --open",
     "debug": "webpack-dev-server  --open",
     "start": "webpack-dev-server --env production --open",
     "heroku-start": "yarn build && NODE_ENV=production node server.js",
