@@ -51,7 +51,7 @@ export default class SetUp extends Phaser.Scene {
       this.updateDarkMode();
     });
 
-    this.menuBtn = new Button(this, 400, 550, 'firstBtn', 'secondBtn', 'Main Menu', 'Begin');
+    this.menuBtn = new Button(this, 400, 550, 'firstBtn', 'secondBtn', 'Main Menu', 'Title');
 
     this.updateAudioPlayer();
   }

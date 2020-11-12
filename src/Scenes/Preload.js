@@ -90,10 +90,10 @@ export default class Preload extends Phaser.Scene {
   }
 
   begin() {
-    this.scene.start('Begin');
+    this.scene.start('Title');
     this.beginCount += 1;
     if (this.beginCount === 2) {
-      this.scene.start('Begin');
+      this.scene.start('Title');
     }
   }
 }

@@ -1,13 +1,14 @@
-import 'phaser';
+import Phaser from 'phaser';
 import config from './Config/config';
 import Game from './Scenes/Game';
 import Boot from './Scenes/Boot';
 import Preload from './Scenes/Preload';
-import Begin from './Scenes/Begin';
+import Title from './Scenes/Title';
 import SetUp from './Scenes/SetUp';
 import Credits from './Scenes/Credits';
 import LeadershipBoard from './Scenes/LeadershipBoard';
 import MusicModel from './MusicModel';
+
 const url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api/';
 class GamePlay extends Phaser.Game {
   constructor() {
@@ -19,12 +20,12 @@ class GamePlay extends Phaser.Game {
       backgroundMusic: null,
       fullScreen: false,
       darkMode: false,
-      url: url,
-      leaders: null
+      url,
+      leaders: null,
     };
     this.scene.add('Boot', Boot);
     this.scene.add('Preload', Preload);
-    this.scene.add('Begin', Begin);
+    this.scene.add('Title', Title);
     this.scene.add('Settings', SetUp);
     this.scene.add('Credits', Credits);
     this.scene.add('Game', Game);

@@ -2,9 +2,9 @@ import Phaser from 'phaser';
 import config from '../Config/config';
 import Button from '../Objects/Button';
 
-export default class Begin extends Phaser.Scene {
+export default class Title extends Phaser.Scene {
   constructor() {
-    super('Begin');
+    super('Title');
   }
 
   create() {
