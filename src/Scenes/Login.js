@@ -34,6 +34,4 @@ export default class Main extends Phaser.Scene {
       this.loginZone,
     );
   }
-
-  update() {}
 }

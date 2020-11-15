@@ -17,7 +17,6 @@ export default class Title extends Phaser.Scene {
     this.leadershipBtn = new Button(this, config.width / 2, config.height / 2 + 100, 'firstBtn', 'secondBtn', 'Leader Board', 'LeadershipBoard');
     this.leadershipBtn = new Button(this, config.width / 2, config.height / 2 + 200, 'firstBtn', 'secondBtn', 'Instructions', 'Main');
 
-
     this.musicModel = this.sys.game.globals.musicModel;
     if (this.musicModel.musicPlaying === true && this.musicModel.backgroundMusic === false) {
       this.backgroundMusic = this.sound.add('music', { volume: 0.5, loop: true });

@@ -2,18 +2,13 @@ import axios from 'axios';
 
 const Api = (() => {
   const gameId = process.env.GAME_ID;
-  const base_url = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api';
+  const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api';
 
   const getApiScores = (callback) => {
-    axios.get(`${base_url}/games/${gameId}/scores/`)
-      .then((response) => {
-        return callback(null, response.data.result);
-      })
-      .catch((error) => {
-        return callback(error);
-      });
-  }
-
+    axios.get(`${baseUrl}/games/${gameId}/scores/`)
+      .then((response) => callback(null, response.data.result))
+      .catch((error) => callback(error));
+  };
 
   const sortApiScores = (scoresArr) => {
     scoresArr.sort((a, b) => b.score - a.score);
@@ -43,14 +38,10 @@ const Api = (() => {
   };
 
   const postApiScore = (user, score, callback) => {
-    axios.post(`${base_url}/games/${gameId}/scores/`, { user, score })
-      .then((response) => {
-        return callback(null, response.data.result);
-      })
-      .catch((error) => {
-        return callback(error);
-      });
-  }
+    axios.post(`${baseUrl}/games/${gameId}/scores/`, { user, score })
+      .then((response) => callback(null, response.data.result))
+      .catch((error) => callback(error));
+  };
 
   return {
     getApiScores,

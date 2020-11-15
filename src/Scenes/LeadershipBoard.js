@@ -6,6 +6,7 @@ export default class LeadershipBoard extends Phaser.Scene {
   constructor() {
     super('LeadershipBoard');
   }
+
   init() {
     this.leaders = this.sys.game.globals.leaders;
   }
@@ -19,7 +20,6 @@ export default class LeadershipBoard extends Phaser.Scene {
       config.height,
     );
 
-
     if (this.leaders) {
       this.leaders = Api.topScores(10, this.leaders);
 
@@ -30,7 +30,7 @@ export default class LeadershipBoard extends Phaser.Scene {
       this.scores = this.add.text(1, 1, displayScores, { lineSpacing: 20, fontSize: 20, fill: '#FFB6C1' });
       Phaser.Display.Align.In.Center(this.scores, this.leadersZone, 0, -50);
     } else {
-      const err = this.add.text(0, 0, `There was a problem connecting to the Leaderboard API!`);
+      const err = this.add.text(0, 0, 'There was a problem connecting to the Leaderboard API!');
       Phaser.Display.Align.In.Center(err, this.leadersZone);
     }
 

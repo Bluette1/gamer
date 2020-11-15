@@ -6,8 +6,6 @@ export default class Main extends Phaser.Scene {
     super('Main');
   }
 
-  preload() {}
-
   create() {
     this.user = this.sys.game.globals.user;
     this.text = this.add.text(
@@ -64,8 +62,6 @@ export default class Main extends Phaser.Scene {
     this.instructions.setY(300);
     this.begin();
   }
-
-  update() {}
 
   begin() {
     setTimeout(() => {
