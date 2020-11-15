@@ -1,5 +1,10 @@
 const webpack = require('webpack');
+
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 const path = require('path');
+const DotEnv = require('dotenv-webpack');
+require('dotenv').config();
 
 module.exports = {
 
@@ -38,9 +43,14 @@ module.exports = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       CANVAS_RENDERER: JSON.stringify(true),
       WEBGL_RENDERER: JSON.stringify(true),
+    }),
+    new DotEnv({
+      path: path.join(__dirname, '.env'),
+      systemvars: true,
     }),
   ],
 };

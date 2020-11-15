@@ -48,6 +48,14 @@ This project is a capstone project at the end of the Microverse Javascript curri
 ### Tests
 - Run `yarn test`
 
+
+### Instructions for the game
+    - Press the keyboard left, right, up, and down to move left, right, up, and down respectively. 
+    - Press the up key multiple times
+    for multiple jumps. 
+    - The player must avoid the shell in order to stay alive. 
+
+
 ## Contributions
 
 There are two ways of contributing to this project:

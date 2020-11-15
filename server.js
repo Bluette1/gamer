@@ -5,6 +5,10 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 
 app.use(express.static(path.join(__dirname, '.')));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 app.get('/', (request, response) => {
   response.sendFile(`${__dirname}/./index.html`);

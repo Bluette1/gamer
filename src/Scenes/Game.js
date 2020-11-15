@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import ApiService from '../ScoreService/Api';
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -13,12 +14,7 @@ export default class Game extends Phaser.Scene {
     this.scoreTextColor = '#FFFFFF';
 
     this.beginCount = 0;
-    this.url = this.sys.game.globals.url;
-    const postGameUrl = `${this.url}/games/`;
-    const postGameParams = {
-      name: 'gamer',
-    };
-    this.postRequest(postGameParams, postGameUrl, this.updateGameId);
+    this.user = this.sys.game.globals.user;
   }
 
   preload() {
@@ -149,7 +145,7 @@ export default class Game extends Phaser.Scene {
     flower.disableBody(true, true);
 
     // Update the score
-    this.score += 10;
+    this.score += 200;
     this.scoreText.setText(`Score: ${this.score}`);
 
     if (this.flowers.countActive(true) === 0) {
@@ -158,8 +154,8 @@ export default class Game extends Phaser.Scene {
         child.enableBody(true, child.x, 0, true, true);
       });
 
-      const shellDistx = (this.player.x < 400)
-        ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+      const shellDistx = (this.player.x < 400) ?
+        Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
       this.shell = this.shells.create(shellDistx, 16, 'shell');
       this.shell.setBounce(1);
@@ -177,37 +173,17 @@ export default class Game extends Phaser.Scene {
     this.player.anims.play('turn');
 
     this.gameOver = true;
+    this.updateScore();
     this.begin();
-  }
-
-  async postRequest(postParams, url, callback) {
-    const requestOptions = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify(postParams),
-    };
-    try {
-      const response = await fetch(url, requestOptions);
-      const resp = await response.json();
-      callback(resp);
-    } catch (error) {
-      console.log(
-        `Error encountered while making the request to the Api: ${this.url}`,
-        error,
-      );
-    }
-  }
-
-  updateGameId(id) {
-    this.gameId = id;
   }
 
   begin() {
     setTimeout(() => {
-      this.scene.start('Title');
+      this.scene.start('LeadershipBoard');
     }, 3000);
+  }
+
+  updateScore() {
+    this.update = ApiService.postApiScore(this.user, this.score);
   }
 }

@@ -1,9 +1,13 @@
 import Phaser from 'phaser';
 import config from '../Config/config';
+import Api from '../ScoreService/Api';
 
 export default class LeadershipBoard extends Phaser.Scene {
   constructor() {
     super('LeadershipBoard');
+  }
+  init() {
+    this.leaders = this.sys.game.globals.leaders;
   }
 
   create() {
@@ -15,15 +19,25 @@ export default class LeadershipBoard extends Phaser.Scene {
       config.height,
     );
 
-    this.waitText = this.add.text(0, 0, 'Waiting to be announced...', { fontSize: '33px', fill: '#FFB6C1' });
+
+    if (this.leaders) {
+      this.leaders = Api.topScores(5, this.leaders);
+
+      let displayScores = '';
+      this.leaders.forEach(entry => {
+        displayScores += `\n${entry.user}: ${entry.score}`;
+      });
+      this.header = this.add.text(1, 1, 'Top 10 Gamers', { fontSize: 40, fill: '#FFB6C1' });
+      this.scores = this.add.text(1, 1, displayScores, { lineSpacing: 20 });
+      Phaser.Display.Align.In.Center(this.header, this.leadersZone, 0, -250);
+      Phaser.Display.Align.In.Center(this.scores, this.leadersZone, 0, -50);
+    } else {
+      const err = this.add.text(0, 0, `There was a problem connecting to the Leaderboard API!`);
+      Phaser.Display.Align.In.Center(err, this.leadersZone);
+    }
 
     Phaser.Display.Align.In.Center(
       this.text,
-      this.leadersZone,
-    );
-
-    Phaser.Display.Align.In.Center(
-      this.waitText,
       this.leadersZone,
     );
 
@@ -35,6 +49,6 @@ export default class LeadershipBoard extends Phaser.Scene {
   begin() {
     setTimeout(() => {
       this.scene.start('Title');
-    }, 3000);
+    }, 7000);
   }
 }

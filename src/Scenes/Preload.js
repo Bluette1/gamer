@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import Api from '../ScoreService/Api';
 
 export default class Preload extends Phaser.Scene {
   constructor() {
@@ -7,6 +8,9 @@ export default class Preload extends Phaser.Scene {
 
   init() {
     this.beginCount = 0;
+    Api.getApiScores((leaders) => {
+      this.sys.game.globals.leaders = leaders;
+    });
   }
 
   preload() {
@@ -16,7 +20,7 @@ export default class Preload extends Phaser.Scene {
     // display the progress bar
     const progressBar = this.add.graphics();
     const progressBox = this.add.graphics();
-    // rgb(25,25,25)
+
     progressBox.fillStyle(0x222222, 0.8);
     progressBox.fillRect(242, 272, 321, 53);
 
@@ -85,15 +89,17 @@ export default class Preload extends Phaser.Scene {
     this.load.image('secondBtn', '../../assets/ui/second_button.png');
     this.load.image('gamerLogo', '../../assets/gamer_logo.png');
     this.load.image('whiteBox', '../../assets/ui/box.png');
+    this.load.image('sky', '../../assets/sky.png');
     this.load.image('checkBox', '../../assets/ui/checkmark.png');
     this.load.audio('music', ['../../assets/1-01_the_4th_detonator.mp3']);
+    this.load.html('login', '../../assets/login.html');
   }
 
   begin() {
-    this.scene.start('Title');
+    this.scene.start('Login');
     this.beginCount += 1;
     if (this.beginCount === 2) {
-      this.scene.start('Title');
+      this.scene.start('Login');
     }
   }
 }
