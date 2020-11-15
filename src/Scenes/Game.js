@@ -174,16 +174,38 @@ export default class Game extends Phaser.Scene {
 
     this.gameOver = true;
     this.updateScore();
-    this.begin();
   }
 
   begin() {
     setTimeout(() => {
       this.scene.start('LeadershipBoard');
-    }, 3000);
+    }, 5000);
   }
 
   updateScore() {
-    this.update = ApiService.postApiScore(this.user, this.score);
+    ApiService.postApiScore(this.user, this.score, (error, response) => {
+      if (error) {
+        console.log(error);
+      } else {
+        ApiService.getApiScores((err, leaders) => {
+          if (err) {
+            console.log(err);
+          } else {
+            this.sys.game.globals.leaders = leaders;
+            this.begin();
+          }
+        });
+      }
+    });
+  }
+
+  updateLeaders() {
+    Api.getApiScores((err, leaders) => {
+      if (err) {
+        console.log(err);
+      } else {
+        this.sys.game.globals.leaders = leaders;
+      }
+    });
   }
 }

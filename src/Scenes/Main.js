@@ -26,20 +26,21 @@ export default class Main extends Phaser.Scene {
       config.height,
     );
     const guidelines = `
-            Instructions
-            for the game
+        Instructions for the game
+        
 
-            -
-            Press the keyboard left, right, up,
-            and down to move left, right, up, and down respectively. -
-            Press the up key multiple times
-            for multiple jumps. -
-            The player must avoid the shell in order to stay alive.
+        
+        Press the keyboard left, right, up,
+        and down to move left, right, up, and down
+        respectively. 
+        Press the up key multiple times
+        for multiple jumps. 
+        The player must avoid the shell
+        in order to stay alive.
 
 
 
-            **
-            * Enjoy the Game! ** *
+        *** Enjoy the Game! ***
             `;
 
     this.instructions = this.add.text(
@@ -69,6 +70,6 @@ export default class Main extends Phaser.Scene {
   begin() {
     setTimeout(() => {
       this.scene.start('Title');
-    }, 5000);
+    }, 8000);
   }
 }

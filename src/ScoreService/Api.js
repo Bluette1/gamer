@@ -6,11 +6,11 @@ const Api = (() => {
 
   const getApiScores = (callback) => {
     axios.get(`${base_url}/games/${gameId}/scores/`)
-      .then(function(response) {
-        return callback(response.data.result);
+      .then((response) => {
+        return callback(null, response.data.result);
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch((error) => {
+        return callback(error);
       });
   }
 
@@ -42,17 +42,13 @@ const Api = (() => {
     return orderedScores;
   };
 
-  const postApiScore = (user, score) => {
+  const postApiScore = (user, score, callback) => {
     axios.post(`${base_url}/games/${gameId}/scores/`, { user, score })
-      .then(function(response) {
-        console.log(
-          'Score was successfully updated',
-          response.data.result
-        );
-
+      .then((response) => {
+        return callback(null, response.data.result);
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch((error) => {
+        return callback(error);
       });
   }
 

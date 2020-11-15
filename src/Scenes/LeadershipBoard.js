@@ -11,7 +11,7 @@ export default class LeadershipBoard extends Phaser.Scene {
   }
 
   create() {
-    this.text = this.add.text(0, 0, 'Leadership Board', { fontSize: '33px', fill: '#FFB6C1' });
+    this.text = this.add.text(0, 0, 'Top 10 Gamers', { fontSize: '33px', fill: '#FFB6C1' });
     this.leadersZone = this.add.zone(
       config.width / 2,
       config.height / 2,
@@ -21,15 +21,13 @@ export default class LeadershipBoard extends Phaser.Scene {
 
 
     if (this.leaders) {
-      this.leaders = Api.topScores(5, this.leaders);
+      this.leaders = Api.topScores(10, this.leaders);
 
       let displayScores = '';
       this.leaders.forEach(entry => {
         displayScores += `\n${entry.user}: ${entry.score}`;
       });
-      this.header = this.add.text(1, 1, 'Top 10 Gamers', { fontSize: 40, fill: '#FFB6C1' });
-      this.scores = this.add.text(1, 1, displayScores, { lineSpacing: 20 });
-      Phaser.Display.Align.In.Center(this.header, this.leadersZone, 0, -250);
+      this.scores = this.add.text(1, 1, displayScores, { lineSpacing: 20, fontSize: 20, fill: '#FFB6C1' });
       Phaser.Display.Align.In.Center(this.scores, this.leadersZone, 0, -50);
     } else {
       const err = this.add.text(0, 0, `There was a problem connecting to the Leaderboard API!`);
@@ -41,7 +39,7 @@ export default class LeadershipBoard extends Phaser.Scene {
       this.leadersZone,
     );
 
-    this.text.setY(200);
+    this.text.setY(50);
 
     this.begin();
   }
@@ -49,6 +47,6 @@ export default class LeadershipBoard extends Phaser.Scene {
   begin() {
     setTimeout(() => {
       this.scene.start('Title');
-    }, 7000);
+    }, 8000);
   }
 }

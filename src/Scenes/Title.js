@@ -8,13 +8,15 @@ export default class Title extends Phaser.Scene {
   }
 
   create() {
-    this.gameBtn = new Button(this, config.width / 2, config.height / 2 - 150, 'firstBtn', 'secondBtn', 'Play', 'Game');
+    this.gameBtn = new Button(this, config.width / 2, config.height / 2 - 200, 'firstBtn', 'secondBtn', 'Play', 'Game');
 
-    this.settingsBtn = new Button(this, config.width / 2, config.height / 2 - 50, 'firstBtn', 'secondBtn', 'Set Up', 'SetUp');
+    this.settingsBtn = new Button(this, config.width / 2, config.height / 2 - 100, 'firstBtn', 'secondBtn', 'Set Up', 'SetUp');
 
-    this.creditsBtn = new Button(this, config.width / 2, config.height / 2 + 50, 'firstBtn', 'secondBtn', 'Credits', 'Credits');
+    this.creditsBtn = new Button(this, config.width / 2, config.height / 2, 'firstBtn', 'secondBtn', 'Credits', 'Credits');
 
-    this.leadershipBtn = new Button(this, config.width / 2, config.height / 2 + 150, 'firstBtn', 'secondBtn', 'Leader Board', 'LeadershipBoard');
+    this.leadershipBtn = new Button(this, config.width / 2, config.height / 2 + 100, 'firstBtn', 'secondBtn', 'Leader Board', 'LeadershipBoard');
+    this.leadershipBtn = new Button(this, config.width / 2, config.height / 2 + 200, 'firstBtn', 'secondBtn', 'Instructions', 'Main');
+
 
     this.musicModel = this.sys.game.globals.musicModel;
     if (this.musicModel.musicPlaying === true && this.musicModel.backgroundMusic === false) {
