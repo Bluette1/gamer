@@ -16,10 +16,10 @@ export default {
   },
   callbacks: {
     postBoot(game, fullScreenMode = false) {
-      // In v3.15, you have to override Phaser's default styles
       if (fullScreenMode) {
         game.canvas.style.width = '100%';
         game.canvas.style.height = '100%';
+
       } else {
         game.canvas.style.width = '800px';
         game.canvas.style.height = '750px';
