@@ -50,6 +50,7 @@ it('should post a given score', async () => {
   });
 
   await Api.postApiScore('Tommy', 2000, mockUpdateScoreSpy);
+  expect(mockUpdateScoreSpy).toHaveBeenCalledTimes(1);
   expect(mockUpdateScoreSpy).toHaveBeenCalledWith(null, message);
 });
 
@@ -64,5 +65,21 @@ it('should return the game scores', async () => {
     data: { result: resultArray },
   });
   await Api.getApiScores(mockUpdateLeadersSpy);
+  expect(mockUpdateLeadersSpy).toHaveBeenCalledTimes(1);
   expect(mockUpdateLeadersSpy).toHaveBeenCalledWith(null, resultArray);
+});
+
+it('On failed retrieval of the game scores, no leaders board update', async () => {
+  const mockUpdateLeadersSpy = jest.fn(() => {});
+  const error = {
+    error: 'some error',
+  };
+  axios.post.mockResolvedValueOnce({
+    data: { result: 'GameId' },
+  });
+
+  axios.get.mockRejectedValueOnce(error);
+  await Api.getApiScores(mockUpdateLeadersSpy);
+  expect(mockUpdateLeadersSpy).toHaveBeenCalledTimes(1);
+  expect(mockUpdateLeadersSpy).toHaveBeenCalledWith(error);
 });
