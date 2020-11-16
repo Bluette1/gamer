@@ -1,6 +1,6 @@
 import Phaser from 'phaser';
 import config from '../Config/config';
-import Api from '../ScoreService/Api';
+import ApiHelper from '../ScoreService/ApiHelper';
 
 export default class LeadershipBoard extends Phaser.Scene {
   constructor() {
@@ -21,7 +21,7 @@ export default class LeadershipBoard extends Phaser.Scene {
     );
 
     if (this.leaders) {
-      this.leaders = Api.topScores(10, this.leaders);
+      this.leaders = ApiHelper.topScores(10, this.leaders);
 
       let displayScores = '';
       this.leaders.forEach(entry => {
