@@ -6,7 +6,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-it('should properly decorate the fullName', async () => {
+it('should return the game id', async () => {
   axios.post.mockResolvedValueOnce({
     data: { result: 'GameId' },
   });
