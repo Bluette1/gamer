@@ -1,7 +1,6 @@
 const ApiHelper = (() => {
   const sortApiScores = (scoresArr) => {
     scoresArr.sort((a, b) => b.score - a.score);
-    console.log('scoresArr!!!', scoresArr)
     return scoresArr;
   };
 
@@ -16,7 +15,6 @@ const ApiHelper = (() => {
         }
       }
     });
-    console.log('finalscores!!!', finalScores)
     return finalScores;
   };
 
@@ -24,14 +22,12 @@ const ApiHelper = (() => {
     const orderedScores = sortApiScores(trim(scores));
 
     if (orderedScores.length > count) {
-      console.log("INSIDE!!!!!!", orderedScores)
       return orderedScores.slice(0, count);
     }
-    console.log("OUTSIDE!!!!!!", orderedScores)
     return orderedScores;
   };
 
-  return { topScores }
+  return { topScores };
 })();
 
 export default ApiHelper;

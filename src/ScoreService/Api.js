@@ -21,9 +21,7 @@ const Api = (() => {
 
   return {
     getApiScores,
-    sortApiScores,
     postApiScore,
-    topScores,
   };
 })();
 
