@@ -19,7 +19,7 @@ const ApiHelper = (() => {
   };
 
   const topScores = (count, scores) => {
-    const orderedScores = trim(sortApiScores(scores));
+    const orderedScores = sortApiScores(trim(sortApiScores(scores)));
 
     if (orderedScores.length > count) {
       return orderedScores.slice(0, count);
