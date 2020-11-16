@@ -14,11 +14,9 @@ const Api = (() => {
     .then((response) => callback(null, response.data.result))
     .catch((error) => callback(error));
 
-  const postApiScore = (user, score, callback) => {
-    axios.post(`${baseUrl}/games/${gameId}/scores/`, { user, score })
-      .then((response) => callback(null, response.data.result))
-      .catch((error) => callback(error));
-  };
+  const postApiScore = (user, score, callback) => axios.post(`${baseUrl}/games/${gameId}/scores/`, { user, score })
+    .then((response) => callback(null, response.data.result))
+    .catch((error) => callback(error));
 
   return {
     getApiScores,

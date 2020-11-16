@@ -54,6 +54,24 @@ it('should post a given score', async () => {
   expect(mockUpdateScoreSpy).toHaveBeenCalledWith(null, message);
 });
 
+it('On failed update of a given score, the update score callback is called with error', async () => {
+  const mockUpdateScoreSpy = jest.fn(() => {});
+
+  const error = {
+    error: 'some error',
+  };
+
+  axios.post.mockImplementation((url) => {
+    if (url === `${baseUrl}/games/`) {
+      return Promise.resolve({ data: { result: 'GameId' } });
+    }
+    return Promise.reject(error);
+  });
+  await Api.postApiScore('Tommy', 2000, mockUpdateScoreSpy);
+  expect(mockUpdateScoreSpy).toHaveBeenCalledTimes(1);
+  expect(mockUpdateScoreSpy).toHaveBeenCalledWith(error);
+});
+
 it('should return the game scores', async () => {
   const mockUpdateLeadersSpy = jest.fn(() => {});
 
@@ -69,7 +87,7 @@ it('should return the game scores', async () => {
   expect(mockUpdateLeadersSpy).toHaveBeenCalledWith(null, resultArray);
 });
 
-it('On failed retrieval of the game scores, no leaders board update', async () => {
+it('On failed retrieval of the game scores, the retrieve scores callback is called with error', async () => {
   const mockUpdateLeadersSpy = jest.fn(() => {});
   const error = {
     error: 'some error',
