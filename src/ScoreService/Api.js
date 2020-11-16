@@ -54,7 +54,7 @@ const Api = (() => {
     getApiScores,
     sortApiScores,
     postApiScore,
-    topScores
+    topScores,
   };
 })();
 
