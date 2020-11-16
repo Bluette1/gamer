@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { ResolvePlugin } from 'webpack';
 
 const Api = (() => {
   const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api';
