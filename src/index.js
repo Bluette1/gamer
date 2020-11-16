@@ -53,11 +53,13 @@ const submitBtn = document.querySelector('#play-button');
 submitBtn.addEventListener('click', (evt) => {
   evt.preventDefault();
   user = playerNameInput.value;
-  initialsSection.reset();
-  formContainer.classList.add('hidden');
-  window.game.currentUser = user;
-  window.game.scene.stop('Login');
-  window.game.scene.start('Main');
+  if (user && user !== '') {
+    initialsSection.reset();
+    formContainer.classList.add('hidden');
+    window.game.currentUser = user;
+    window.game.scene.stop('Login');
+    window.game.scene.start('Main');
+  }
 });
 
 window.game = new GamePlay();
