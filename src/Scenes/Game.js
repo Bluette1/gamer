@@ -154,8 +154,8 @@ export default class Game extends Phaser.Scene {
         child.enableBody(true, child.x, 0, true, true);
       });
 
-      const shellDistx = (this.player.x < 400)
-        ? Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
+      const shellDistx = (this.player.x < 400) ?
+        Phaser.Math.Between(400, 800) : Phaser.Math.Between(0, 400);
 
       this.shell = this.shells.create(shellDistx, 16, 'shell');
       this.shell.setBounce(1);
@@ -183,14 +183,10 @@ export default class Game extends Phaser.Scene {
   }
 
   updateScore() {
-    ApiService.postApiScore(this.user, this.score, (error) => {
-      if (error) {
-        console.log(error);
-      } else {
+    ApiService.postApiScore(this.user, this.score, (error, response) => {
+      if (response) {
         ApiService.getApiScores((err, leaders) => {
-          if (err) {
-            console.log(err);
-          } else {
+          if (leaders) {
             this.sys.game.globals.leaders = leaders;
             this.begin();
           }

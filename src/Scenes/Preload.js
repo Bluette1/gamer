@@ -9,9 +9,7 @@ export default class Preload extends Phaser.Scene {
   init() {
     this.beginCount = 0;
     Api.getApiScores((err, leaders) => {
-      if (err) {
-        console.log(err);
-      } else {
+      if (leaders) {
         this.sys.game.globals.leaders = leaders;
       }
     });

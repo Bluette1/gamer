@@ -19,7 +19,6 @@ export default {
       if (fullScreenMode) {
         game.canvas.style.width = '100%';
         game.canvas.style.height = '100%';
-
       } else {
         game.canvas.style.width = '800px';
         game.canvas.style.height = '750px';

@@ -6,7 +6,7 @@ const Api = (() => {
   const postApiGame = (name) => {
     axios.post(`${baseUrl}/games/`, { name })
       .then((response) => response.data.result)
-      .catch((error) => { console.log(error) });
+      .catch(() => {});
   };
 
   const gameId = process.env.GAME_ID || postApiGame('Gamer');
@@ -37,7 +37,7 @@ const Api = (() => {
   };
 
   const topScores = (count, scores) => {
-    const orderedScores = trim(sortApiScores(scores));
+    const orderedScores = sortApiScores(trim(scores));
     if (orderedScores.length > count) {
       orderedScores.splice(count, orderedScores.length - count);
     }
@@ -54,8 +54,7 @@ const Api = (() => {
     getApiScores,
     sortApiScores,
     postApiScore,
-    trim,
-    topScores,
+    topScores
   };
 })();
 
