@@ -48,14 +48,13 @@ This project is a capstone project at the end of the Microverse Javascript curri
 ### Tests
 - Run `yarn test`
 
-
 ### Instructions for the game
     - Press the keyboard left, right, up, and down to move left, right, up, and down respectively. 
     - Press the up key multiple times
     for multiple jumps. 
-    - The player must avoid the shell in order to stay alive. 
-
-
+    - The player must avoid the shell in order to stay alive.
+    - The player progresses to new levels on successfully completing each round, and the levels get more dangerous with more bomb shells being unleashed.
+     
 ## Contributions
 
 There are two ways of contributing to this project:
