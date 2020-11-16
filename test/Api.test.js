@@ -1,6 +1,8 @@
 const axios = require('axios');
 const { default: Api } = require('../src/ScoreService/Api');
 
+const baseUrl = 'https://us-central1-js-capstone-backend.cloudfunctions.net/api';
+
 const resultArray = [{
   user: 'Jane',
   score: 1000,
@@ -34,6 +36,21 @@ it('should return the game id', async () => {
   });
   const gameId = await Api.postApiGame('Gamer');
   expect(gameId).toEqual('GameId');
+});
+
+it('should post a given score', async () => {
+  const mockUpdateScoreSpy = jest.fn(() => {});
+  const message = 'Success message';
+
+  axios.post.mockImplementation((url) => {
+    if (url === `${baseUrl}/games/`) {
+      return Promise.resolve({ data: { result: 'GameId' } });
+    }
+    return Promise.resolve({ data: { result: message } });
+  });
+
+  await Api.postApiScore('Tommy', 2000, mockUpdateScoreSpy);
+  expect(mockUpdateScoreSpy).toHaveBeenCalledWith(null, message);
 });
 
 it('should return the game scores', async () => {
