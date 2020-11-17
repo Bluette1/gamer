@@ -20,7 +20,7 @@ export default class LeadershipBoard extends Phaser.Scene {
       config.height,
     );
 
-    if (this.leaders) {
+    if (this.leaders && this.leaders.length > 0) {
       this.leaders = ApiHelper.topScores(10, this.leaders);
 
       let displayScores = '';
@@ -34,7 +34,7 @@ export default class LeadershipBoard extends Phaser.Scene {
       There was a problem connecting to the Leaderboard Api.\n
       Please try again.
       `;
-      const err = this.add.text(0, 0, message);
+      const err = this.add.text(0, 0, message, { fontSize: '22px', fill: '#FFB6C1' });
       Phaser.Display.Align.In.Center(err, this.leadersZone);
     }
 
