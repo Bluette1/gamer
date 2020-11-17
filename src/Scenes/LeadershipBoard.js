@@ -30,7 +30,11 @@ export default class LeadershipBoard extends Phaser.Scene {
       this.scores = this.add.text(1, 1, displayScores, { lineSpacing: 20, fontSize: 20, fill: '#FFB6C1' });
       Phaser.Display.Align.In.Center(this.scores, this.leadersZone, 0, -50);
     } else {
-      const err = this.add.text(0, 0, 'There was a problem connecting to the Leaderboard API!');
+      const message = `
+      There was a problem connecting to the Leaderboard Api.\n
+      Please try again.
+      `;
+      const err = this.add.text(0, 0, message);
       Phaser.Display.Align.In.Center(err, this.leadersZone);
     }
 

@@ -31,11 +31,12 @@ afterEach(() => {
 });
 
 it('should return the game id', async () => {
-  axios.post.mockResolvedValueOnce({
-    data: { result: 'GameId' },
-  });
-  const gameId = await Api.postApiGame('Gamer');
-  expect(gameId).toEqual('GameId');
+  const mockUpdateGameIdSpy = jest.fn(() => {});
+
+  axios.post.mockImplementation(() => Promise.resolve({ data: { result: 'GameId' } }));
+  await Api.postApiGame('Gamer', mockUpdateGameIdSpy);
+  expect(mockUpdateGameIdSpy).toHaveBeenCalledTimes(1);
+  expect(mockUpdateGameIdSpy).toHaveBeenCalledWith(null, 'GameId');
 });
 
 it('should post a given score', async () => {
