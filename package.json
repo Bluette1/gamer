@@ -25,7 +25,6 @@
   "bugs": {
     "url": "https://github.com/bluette1/gamer/issues"
   },
-  "homepage": "https://github.com/bluette1/gamer#readme",
   "dependencies": {
     "axios": "^0.21.0",
     "babel-loader": "^8.2.1",
