@@ -1,6 +1,7 @@
 # gamer
 ![Linters](https://github.com/bluette1/gamer/workflows/Linters/badge.svg)
 ![Test with jest](https://github.com/bluette1/gamer/workflows/Test%20with%20jest/badge.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b07137e5-4aef-4b8a-bab5-cb949cef046a/deploy-status)](https://app.netlify.com/sites/gamer-hero/deploys)
 
 ## Project description
 This project is an implementation of a game application which runs in the browser, using Phaser3 technology. Being new to Phaser, and game development, I built and modified upon the examples in the [Phaser tutorial](http://phaser.io/tutorials/making-your-first-phaser-3-game/part1), as well as in the [Phaser Template Series](https://phasertutorials.com/creating-a-phaser-3-template-part-3/), as much as I could while learning on the project.
@@ -29,7 +30,7 @@ This project is a capstone project at the end of the Microverse Javascript curri
 - A user can view the game in full screen mode and minimize screen.
 
 ## Deployed Site
-[Gamer on heroku](https://super-gamer-app.herokuapp.com/)
+[Gamer on Netlify](https://gamer-hero.netlify.app/)
 
 ## Running and testing it locally
 
